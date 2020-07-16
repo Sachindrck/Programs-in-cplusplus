@@ -1,5 +1,6 @@
 // Iterative code to find the factorial of a number.
 // number should be in between 1-25.
+// Naive approach
 
 #include <iostream>
 using namespace std;
