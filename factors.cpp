@@ -1,5 +1,6 @@
 
 // Iterative code to find the factors of a number.
+// Naive approach
 
 #include <iostream>
 using namespace std;
