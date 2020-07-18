@@ -5,9 +5,12 @@ Codes of some basic programs in C++.
 ## Completed
 1. Factorial of a number.
 2. Factors of a number.
+3. Linear Search
+4. Binary Search
+5. GCD of 2 numbers.
 
 
 ## To-do
 1. To check a number is palindrome or not.
-2. GCD of 2 numbers.
+2. 2-D array multiplication
 3. LCM of 2 numbers.
