@@ -11,6 +11,7 @@ Codes of some basic programs in C++.
 6. To reverse a number.
 7. To check perfect numbers.
 8. To check prime numbers.
+9. To check armstrong number.
 
 ## To-do
 1. To check a number is palindrome or not.
