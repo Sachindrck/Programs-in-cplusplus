@@ -12,6 +12,7 @@ Codes of some basic programs in C++.
 7. To check perfect numbers.
 8. To check prime numbers.
 9. To check armstrong number.
+10. To check a string is palindrome or not.
 
 ## To-do
 1. To check a number is palindrome or not.
