@@ -1,0 +1,25 @@
+// e^x using taylor series through recursion using Horner's Rule
+// e^1 ~ 2.7-2.8
+
+#include <iostream>
+using namespace std;
+
+double e(int x, int n)
+{
+   static double s = 1;
+   
+   if (n == 0) return s;
+   
+   s = 1 + x * s / n;
+   return e(x, n-1);
+}
+
+int main()
+{
+    int x = 1;
+    int n = 10; // No of terms ..... Increase to get more precise result.
+    
+    cout << "e^x: " << e(x, n) << endl;
+
+    return 0;
+}
