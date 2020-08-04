@@ -1,0 +1,29 @@
+// e^x using taylor series through recursion
+// e^1 ~ 2.7-2.8
+
+#include <iostream>
+using namespace std;
+
+double e(int x, int n)
+{
+    static double p = 1, f = 1;
+    double r;
+    
+    if (n == 0)
+        return 1;
+    
+    r = e(x, n-1);
+    p *= x;
+    f *= n;
+    return r + p/f;
+}
+
+int main()
+{
+    int x = 1;
+    int n = 10; // No of terms ..... Increase to get more precise result.
+    
+    cout << "e^x: " << e(x, n) << endl;
+
+    return 0;
+}
