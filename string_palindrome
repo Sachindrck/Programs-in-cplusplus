@@ -1,4 +1,4 @@
-// Code to find Number of words, vowels and consonants in a string.
+// Code to check a given string/word is palindrome or not.
 
 #include <iostream>
 #include <string>
