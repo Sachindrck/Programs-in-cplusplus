@@ -1,0 +1,131 @@
+#include <iostream>
+
+using namespace std;
+
+class Element
+{
+public:
+    int i;       // Row number
+    int j;       // Column number
+    int x;       // Value
+};
+
+class Sparse
+{
+private:
+    int m;       // No. of rows
+    int n;       // No. of columns
+    int num;     // No. of non zero elements
+    Element *ele;        // Pointer to element array
+
+public:
+    Sparse(int m, int n, int num)          // Constructor
+    {
+        this->m= m;
+        this->n = n;
+        this->num = num;
+        ele = new Element[this->num];
+    }
+    ~Sparse()
+    {
+        delete [] ele;
+    }
+
+    void read()
+    {
+        cout << "Enter non zero elements: <row> <column> <value> ";
+
+        for (int i = 0; i < num; i++)
+            cin >> ele[i].i >> ele[i].j >> ele[i].x;
+    }
+
+    void display()
+    {
+        int k = 0;
+        cout << "\nThe matrix is:  \n";
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == ele[k].i && j == ele[k].j)
+                {
+                    cout << ele[k++].x << " ";
+                }
+                else
+                    cout << 0 << " ";
+            }
+            cout << endl;
+        }
+    }
+
+    Sparse add(Sparse &s)
+    {
+        if (m != s.m || n != s.n)
+            return Sparse(0,0,0);
+
+        int i, j, k;
+        i = j = k = 0;
+
+        Sparse *sum = new Sparse(m, n, num+s.num);
+
+        while (i < num && j < s.num)
+        {
+            if (ele[i].i < s.ele[j].i)          // To check for row
+                sum->ele[k++] = ele[i++];
+            else if (ele[i].i > s.ele[j].i)
+                sum->ele[k++] = s.ele[j++];
+            else
+            {
+                if (ele[i].j < s.ele[j].j)       // To check for column
+                    sum->ele[k++] = ele[i++];
+                else if (ele[i].j > s.ele[j].j)
+                    sum->ele[k++] = s.ele[j++];
+                else
+                {
+                    sum->ele[k] = ele[i];           // if row1 == row2 and col1 == col2
+                    sum->ele[k++].x = ele[i++].x + s.ele[j++].x;
+                }
+            }
+        }
+        for (;i<num;i++) sum->ele[k++] = ele[i];
+        for (;j<s.num;j++) sum->ele[k++] = ele[j];
+        sum->num = k;
+
+        return *sum;
+    }
+
+};
+
+void add(Sparse s, Sparse t)
+{
+
+}
+
+
+int main()
+{
+    /*int m, n, num;
+    cout << "Enter the dimension: ";
+    cin >> m >> n;
+
+    cout << "Enter number of non zero elements: ";
+    cin >> num;*/
+
+    Sparse s(3, 3, 3);
+    s.read();
+
+    Sparse t(3, 3, 3);
+    t.read();
+
+
+    s.display();
+    t.display();
+
+
+    Sparse y = s.add(t);
+    y.display();
+
+
+
+    return 0;
+}
