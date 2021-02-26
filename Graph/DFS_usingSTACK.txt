@@ -1,0 +1,46 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+
+void DFS(int A[][5], int u)
+{
+    int visited[5] = {0};
+    cout << u << " ";
+    visited[u] = 1;
+    
+    stack<int> st;
+    st.push(u);
+    
+    
+    while(!st.empty()) {
+        int i = st.top();
+        int flag = 1;
+        
+        for (int v = 0; v < 5; v++) {
+            if (A[i][v] == 1 && visited[v] == 0) {
+                st.push(v);
+                cout << v << " ";
+                visited[v] = 1;
+                flag = 0;
+                break;
+            }
+        }
+        if (flag)
+            st.pop();
+    }
+    
+}
+
+int main()
+{
+    
+    int A[][5] = {{0, 1, 1, 0, 0},
+                  {1, 0, 0, 1, 0},
+                  {1, 0, 0, 1, 0},
+                  {0, 1, 1, 0, 1},
+                  {0, 0, 0, 1, 0}};
+    
+    DFS(A, 0);
+
+    return 0;
+}
