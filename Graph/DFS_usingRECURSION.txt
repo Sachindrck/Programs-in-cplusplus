@@ -1,0 +1,35 @@
+#include <iostream>
+#include <stack>
+#define n 5
+using namespace std;
+
+void DFS(int A[][n], int u, int visited[])
+{
+    if (visited[u] == 0) {
+        cout << u << " ";
+        visited[u] = 1;
+        
+        for (int v = 0; v < n; v++) {
+            if (A[u][v] == 1 && visited[v] == 0) {
+                DFS(A, v, visited);
+            }
+        }
+    }
+    
+}
+
+int main()
+{
+    
+    int A[][n] = {{0, 1, 1, 0, 0},
+                  {1, 0, 0, 1, 0},
+                  {1, 0, 0, 1, 0},
+                  {0, 1, 1, 0, 1},
+                  {0, 0, 0, 1, 0}};
+    
+    int visited[] = {0};
+    
+    DFS(A, 0, visited);
+    
+    return 0;
+}
