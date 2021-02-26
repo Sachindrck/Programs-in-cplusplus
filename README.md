@@ -18,3 +18,20 @@ Codes of some basic programs in C++.
 1. To check a number is palindrome or not.
 2. 2-D array multiplication
 3. LCM of 2 numbers.
+
+
+# GRAPH
+1. Adjacency Matrix and Adj. List Representation
+2. Breadth First Traversal
+3. Depth First Traversal
+4. Cyle Detection (Cyclic or Acyclic)
+5. Shortest Path (BFS and Dijkstra's)
+6. Topological Sorting
+7. Minimum Spanning Tree (Prim's and Kruskal's)
+8. Backtracking (nQueen, Rat & Maze, Knight-Tour)
+9. Bellmen Ford
+10. Floyd Warshall
+11. TSP
+12. Flood fill
+13. Graph Colouring
+14. Snake & Ladder
