@@ -1,0 +1,79 @@
+// BFS - Breadth First Traversal
+#include <iostream>
+#include <vector>
+#include <queue>
+#define V 5
+using namespace std;
+
+void addEdge(vector<int> arr[], int u, int v)
+{
+    arr[u].push_back(v);
+    arr[v].push_back(u);
+}
+
+void printAdjList(vector<int> arr[])
+{
+    for(int i = 0; i < V; i++) {
+        cout << i << " : ";
+        for (int u : arr[i]) {
+            cout << " - " << u ;
+        }
+        cout << endl;
+    }
+
+}
+
+// Depth First Traversal
+void DFS(vector<int> arr[], int s, bool visited[])
+{
+    cout << s << " ";
+    visited[s] = true;
+    for (int u : arr[s]) {
+        if (visited[u] == false)
+            DFS(arr, u, visited);
+    }
+}
+
+// DFS of Connected or Disconnected Graph
+// No of connected components - No of Islands
+int DFSUtil(vector<int> arr[])
+{
+    int count = 0;
+    bool visited[V+1];
+    for (int i = 0; i < V; i++) {
+        visited[i] = false;
+    }
+
+    for (int v = 0; v < V; v++) {
+        if (visited[v] == false) {
+            count++;
+            DFS(arr, v, visited);
+        }
+    }
+
+    return count;
+
+}
+
+
+
+int main()
+{
+    //Adjacency List
+    vector<int> arr[V];
+
+    addEdge(arr, 0, 1);
+    addEdge(arr, 0, 2);
+    addEdge(arr, 1, 2);
+    //addEdge(arr, 2, 3);
+    //addEdge(arr, 1, 4);
+    addEdge(arr, 3, 4);
+    //addEdge(arr, 5, 6);
+
+    // printAdjList(arr);
+
+    // Counting connected components in an undirected graph - No of Island in a Graph using DFS
+    cout << "\nNo of Components(islands) - " << DFSUtil(arr);
+
+    return 0;
+}
