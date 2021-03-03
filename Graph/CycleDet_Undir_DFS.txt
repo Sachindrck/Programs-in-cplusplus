@@ -1,0 +1,79 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#define V 5
+using namespace std;
+
+void addEdge(vector<int> arr[], int u, int v)
+{
+    arr[u].push_back(v);
+    arr[v].push_back(u);
+}
+
+void printAdjList(vector<int> arr[])
+{
+    for(int i = 0; i < V; i++) {
+        cout << i << " : ";
+        for (int u : arr[i]) {
+            cout << " - " << u ;
+        }
+        cout << endl;
+    }
+
+}
+
+// Detecting a cycle in an undirected graph using DFS approach
+bool DFS(vector<int> arr[], int s, bool visited[], int parent)
+{
+    visited[s] = true;
+
+    for (int v: arr[s]) {
+        if (visited[v] == false) {
+            if(DFS(arr, v, visited, s) == true)
+                    return true;
+
+            }
+            else if (v != parent)
+                return true;
+        }
+    return false;
+}
+
+bool DFSUtil(vector<int> arr[])
+{
+    bool visited[V];
+    for (int i = 0; i < V; i++) {
+        visited[i] = false;
+    }
+
+    for (int u = 0; u < V; u++) {
+        if (visited[u] == false)
+            if (DFS(arr, u, visited, -1) == true)
+                return true;
+    }
+    return false;
+}
+int main()
+{
+    //Adjacency List
+    vector<int> arr[V];
+
+    addEdge(arr, 0, 1);
+    addEdge(arr, 0, 2);
+    //addEdge(arr, 1, 2);
+    addEdge(arr, 1, 3);
+    //addEdge(arr, 2, 3);
+    addEdge(arr, 2, 4);
+    //addEdge(arr, 3, 4);
+
+    printAdjList(arr);
+    cout << endl;
+
+    if(DFSUtil(arr) == true)
+        cout << "Graph contains cycle";
+    else
+        cout << "Graph doesn't contains cycle";
+
+    cout << endl;
+    return 0;
+}
