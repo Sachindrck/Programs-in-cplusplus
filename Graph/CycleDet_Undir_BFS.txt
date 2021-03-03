@@ -1,0 +1,89 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+#define V 5
+using namespace std;
+
+void addEdge(vector<int> arr[], int u, int v)
+{
+    arr[u].push_back(v);
+    arr[v].push_back(u);
+}
+
+void printAdjList(vector<int> arr[])
+{
+    for(int i = 0; i < V; i++) {
+        cout << i << " : ";
+        for (int u : arr[i]) {
+            cout << " - " << u ;
+        }
+        cout << endl;
+    }
+
+}
+
+// Detecting a cycle in an undirected graph using BFS approach
+bool BFS(vector<int> arr[], int s, bool visited[], int parent[])
+{
+    queue<int> q;
+    visited[s] = true;
+    q.push(s);
+
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+
+        for (int v: arr[u]) {
+            if (visited[v] == false) {
+                    parent[v] = u;
+                    visited[v] = true;
+                    q.push(v);
+            }
+            else if(parent[u] ! v)
+                return true;
+        }
+    }
+    return false;
+}
+
+bool BFSUtil(vector<int> arr[])
+{
+    bool visited[V];
+    for (int i = 0; i < V; i++) {
+        visited[i] = false;
+    }
+    int parent[V] = {-1};
+
+    for (int u = 0; u < V; u++) {
+        if (visited[u] == false)
+            if (BFS(arr, u, visited, parent) == true)
+                return true;
+    }
+    return false;
+}
+
+
+int main()
+{
+    //Adjacency List
+    vector<int> arr[V];
+
+    addEdge(arr, 0, 1);
+    addEdge(arr, 0, 2);
+    addEdge(arr, 1, 2);
+    addEdge(arr, 1, 3);
+    addEdge(arr, 2, 3);
+    addEdge(arr, 2, 4);
+    addEdge(arr, 3, 4);
+
+    printAdjList(arr);
+    cout << endl;
+
+    if(BFSUtil(arr) == true)
+        cout << "Graph contains cycle";
+    else
+        cout << "Graph doesn't contains cycle";
+
+    cout << endl;
+    return 0;
+}
