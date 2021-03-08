@@ -1,10 +1,11 @@
-// Adj List representation of a weighted uundirected graph
+// Adj List representation of a weighted undirected graph
 
 #include <iostream>
 #include <vector>
-#include <utility>
+#include <utility>                         // for using pair<int, int> p
 using namespace std;
 
+//Function to add an edge to the graph
 void addEdge(vector<pair<int, int>> graph[], int u, int v, int w)
 {
     graph[u].push_back(make_pair(v, w));
@@ -17,7 +18,7 @@ void printGraph(vector<pair<int, int>> graph[], int V)
     for (int u = 0; u < V; u++) {
         cout << u << " -> ";
         for (int v = 0; v < V; v++) {
-            cout << graph[u][v].first << "-w = " << graph[u][v].second << " || ";
+            cout << graph[u][v].first << "-w = " << graph[u][v].second << " || ";                 // second part is the weight of the edge.
         }
         cout << endl;
     }
@@ -40,3 +41,14 @@ int main()
     
     return 0;
 }
+
+
+
+/* OUTPUT
+
+0 -> 1-w = 5 || 2-w = 8 || 3-w = 100 || 0-w = 0 ||                                                                                            
+1 -> 0-w = 5 || 3-w = 15 || 2-w = 10 || 0-w = 0 ||                                                                                            
+2 -> 0-w = 8 || 1-w = 10 || 3-w = 20 || 0-w = 0 ||                                                                                            
+3 -> 0-w = 100 || 1-w = 15 || 2-w = 20 || 0-w = 0 ||
+
+*/
