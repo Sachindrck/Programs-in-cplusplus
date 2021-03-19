@@ -1,0 +1,45 @@
+#include <iostream>
+using namespace std;
+
+// Function to sort the 2D matrix based on finish time
+void sortbyfinishtime(int a[][2], int n)
+{
+    for (int i = 0; i < n; i++) {
+        for (int j = i; j < n; j++) {
+            if (a[i][1] > a[j][1]) {
+            // swap operation
+                int temp1 = a[i][0];
+                int temp2 = a[i][1];
+                a[i][0] = a[j][0];
+                a[i][1] = a[j][1];
+                a[j][0] = temp1;
+                a[j][1] = temp2;
+            }
+        }
+    }
+}
+
+int main() {
+    // Write C++ code here
+    int noAct = 4;
+    int act[noAct][2] = { {2, 3}, {6, 10}, {5, 8}, {1, 4} };
+    
+    sortbyfinishtime(act, noAct);
+    
+    cout << "List after sorting by finish time";
+    for (int i = 0; i < noAct; i++) {
+        cout << act[i][0] << " " << act[i][1] << endl;
+    }
+    
+    int res = 1;
+    
+    for (int k = 1; k < noAct; k++) {
+        if (act[k][0] >= act[k-1][1]) {
+            res++;
+        }
+    }
+    
+    cout << res << endl;
+
+    return 0;
+}
