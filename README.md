@@ -35,3 +35,12 @@ Codes of some basic programs in C++.
 12. Flood fill
 13. Graph Colouring
 14. Snake & Ladder
+
+# Greedy Algorithms
+1. Activity Selection Problem
+2. Fractional Knapsack Problem
+3. Job Scheduling
+4. Prim's MST
+5. Kruskal's MST
+6. Dijkstra's Shortest Path Algorithm
+7. Hoffman Coding
