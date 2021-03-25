@@ -1,0 +1,72 @@
+#include <iostream>
+using namespace std;
+#define c 10
+
+bool isAttacked(int n, int board[c][c], int x, int y)
+{
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n; j++) {
+            if (i == x || j == y || (i+j) == (x+y) || (i-j) == (x-y)) {
+                if (board[i][j] == 1)
+                    return true;
+            }
+        }
+    }
+
+    return false;
+}
+
+bool NQueens(int size, int board[c][c], int n)
+{
+	if (n == 0)
+		return true;
+	
+	for (int i = 0; i < size; i++) {
+        for (int j = 0; j < size; j++) {
+            if (isAttacked(size, board, i , j)) {
+                continue;
+            }
+            
+            board[i][j] = 1;
+
+            if (NQueens(size, board, n-1)) {
+                return true;
+            }
+
+            board[i][j] = 0;
+        }
+    }
+
+    return false;
+}
+
+void printBoard(int n, int board[c][c])
+{
+    for (int x = 0; x < n; x++) {
+        for (int y = 0; y < n; y++) {
+            cout << board[x][y] << " ";
+        }
+        cout << endl;
+    }
+}
+
+
+// Driver code
+int main()
+{
+	int n;
+	cin >> n;
+    int size = n;
+
+	int board[c][c] = {0};
+    //printBoard(n, board);
+
+    if(NQueens(size, board, n)) {
+        cout << "YES" << endl;
+        printBoard(n, board);
+    }
+    else {
+        cout << "NO" << endl;
+    }
+
+}
