@@ -1,0 +1,32 @@
+#include <iostream>
+#include <string>
+#include <bits/stdc++.h>
+using namespace std;
+
+void printAllpermutations(string s, int l, int r)           // O(n*n!)
+{
+    if (l == r) {
+        cout << s << " ";
+        return;
+    }
+    else {
+        for (int i = l; i < r; i++) {
+            swap(s[l], s[i]);
+            printAllpermutations(s, l+1, r);
+            swap(s[l], s[i]);
+        }
+    }
+}
+
+int main()
+{
+    string s;
+    cin >> s;
+    
+    int l = 0;
+    int r = s.length();
+    cout << "All possible permutations of string is: ";
+    printAllpermutations(s, l, r);
+
+    return 0;
+}
