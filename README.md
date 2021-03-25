@@ -44,3 +44,6 @@ Codes of some basic programs in C++.
 5. Kruskal's MST
 6. Dijkstra's Shortest Path Algorithm
 7. Hoffman Coding
+
+# Backtracking
+1. N Queen's
