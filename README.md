@@ -46,4 +46,6 @@ Codes of some basic programs in C++.
 7. Hoffman Coding
 
 # Backtracking
-1. N Queen's
+1. N Queen's Problem
+2. Rat in a Maze
+3. Soduko Solver
