@@ -13,11 +13,14 @@ Codes of some basic programs in C++.
 8. To check prime numbers.
 9. To check armstrong number.
 10. To check a string is palindrome or not.
+11. To check a number is palindrome or not.
+12. 2-D array multiplication
+13. LCM of 2 numbers.
 
 ## To-do
-1. To check a number is palindrome or not.
-2. 2-D array multiplication
-3. LCM of 2 numbers.
+
+
+
 
 
 # GRAPH
@@ -46,4 +49,6 @@ Codes of some basic programs in C++.
 7. Hoffman Coding
 
 # Backtracking
-1. N Queen's
+1. N Queen's Problem
+2. Rat in a Maze
+3. Soduko Solver
