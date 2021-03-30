@@ -32,6 +32,7 @@ For each line of input produce one line of output. This line contains any one of
 10  10
 
 ## Output:
+
 <
 
 >
