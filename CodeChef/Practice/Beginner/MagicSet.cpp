@@ -1,4 +1,5 @@
-#include<bits/stdc++.h>
+
+#include<iostream>
 using namespace std;
 int main()
 {
@@ -23,7 +24,7 @@ int main()
         while(count --) {
             res *= 2;
         }
-        std::cout << res - 1 << std::endl;
+        cout << res - 1 << endl;
         
     }
 return 0;
