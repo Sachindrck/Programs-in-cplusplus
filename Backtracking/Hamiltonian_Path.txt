@@ -1,0 +1,95 @@
+#include <iostream>
+#define N 10
+using namespace std;
+
+bool isSafe(int graph[N][N], int path[], int i, int pos)
+{
+    
+    if (graph[path[pos-1]][i] == 0) {
+        return false;
+    }
+    
+    for (int j = 0; j < pos; j++) {
+        if (path[j] == i)
+            return false;
+    }
+    
+    
+        
+    return true;
+}
+
+void print(int path[], int n)
+{
+    for (int i = 0; i < n; i++) {
+        cout << path[i] << " ";
+    }
+    cout << endl;
+}
+
+
+bool FindHamCycle(int graph[N][N], int path[], int n, int pos) 
+{
+    if (pos == n) {
+        //print(path, n);
+        return true;
+    }
+    else {
+        for (int i = 0; i < n; i++) {
+            if (isSafe(graph, path, i, pos)) {
+                path[pos] = i;
+                if (FindHamCycle(graph, path, n, pos+1) == true)
+                    return true;
+                path[pos] = -1;
+            }
+        }
+    }
+    return false;
+}
+
+bool HamCycle(int graph[N][N], int n)
+{
+    int path[n];
+    for (int i = 0; i < n; i++) {
+        path[i] = -1;
+    }
+    
+    for (int k = 0; k < n; k++) {
+        path[0] = k;
+        if (FindHamCycle(graph, path, n, 1) == true) {
+            return true;
+        }
+    }
+    
+    return false;
+}
+
+
+int main() {
+	//code
+	int t;
+	cin >> t;
+	
+	while (t--) {
+	    int n, m;
+	    cin >> n >> m;
+	    
+	    int graph[N][N];
+	    
+	    for (int i = 0; i < N; i++) {
+	        for (int j = 0; j < N; j++) {
+	            graph[i][j] = 0;
+	        }
+	    }
+	    
+	    for (int i = 0; i < m; i++) {
+	        int u, v;
+	        cin >> u >> v;
+	        graph[u-1][v-1] = 1;
+	        graph[v-1][u-1] = 1;
+	    }
+	    
+	    cout << HamCycle(graph, n) << endl;
+	}
+	return 0;
+}

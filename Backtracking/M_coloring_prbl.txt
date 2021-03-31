@@ -1,0 +1,64 @@
+#include <iostream>
+using namespace std;
+
+
+bool checkcoloring(int graph[4][4], int colors[] , int l, int m, int V);
+
+
+bool graphColoring(int graph[4][4], int m, int V) {
+    
+    int colors[V] = {0};
+    if (checkcoloring(graph, colors, 0, m, V) == false)
+        return false;
+        
+    return true;
+}
+
+bool isSafe(int graph[4][4], int colors[], int i, int c, int V)
+{
+    for (int j = 0; j < V; j++) {
+        if (i != j && graph[i][j] == 1 && colors[j] == c)
+            return false;
+    }
+    return true;
+}
+
+void print(int colors[], int V)
+{
+    for (int x = 0; x < V; x++)
+        cout << colors[x] << " ";
+        
+    cout << endl;
+}
+
+bool checkcoloring(int graph[4][4], int colors[] , int l, int m, int V)
+{
+    if (l == V) {
+        print(colors, V);
+        return true;
+    }
+    
+    else {
+            for (int c = 1; c <= m; c++) {
+                if (isSafe(graph, colors, i, c, V)) {
+                    colors[i] = c;
+                    if (checkcoloring(graph, colors, l+1, m, V) == true)
+                        return true;
+                    colors[i] = 0;
+                }
+            }
+        }
+    return false;
+}
+
+// { Driver Code Starts.
+
+int main() {
+    int graph[4][4] = {0, 1, 1, 1, 1, 0, 1, 0, 1, 1, 0, 1, 1, 0, 1, 0};
+    int V = 4;
+    int m = 3;
+    
+    cout << graphColoring(graph, m, V);
+    return 0;
+}
+// } Driver Code Ends

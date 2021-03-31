@@ -1,0 +1,66 @@
+#include <iostream>
+using namespace std;
+
+void print(int res[4][4])
+{
+    cout << "The final path is: " << endl;
+    for (int i = 0; i < 4; i++) {
+        for (int j = 0; j < 4; j++) {
+            if (res[i][j] == -1) {
+                cout << 0 << " ";
+            }
+            else
+                cout << res[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+}
+
+bool findcheese(int maze[4][4], int i, int j, int res[4][4])
+{
+    if (i == 3 && j == 3) {
+        print(res);
+        return true;
+    }
+    else {
+        if (maze[i+1][j] == 1 && res[i+1][j] != -1) {
+            res[i+1][j] = 1;
+            findcheese(maze, i+1, j, res);
+        }
+        else if (maze[i][j+1] == 1 && res[i][j+1] != -1) {
+            res[i][j+1] = 1;
+            findcheese(maze, i, j+1, res);
+        }
+        else {
+            if (res[i-1][j] == 1) {
+                res[i][j] = -1;
+                findcheese(maze, i-1, j, res);
+            }
+            else if (res[i][j-1] == 1){
+                res[i][j] = -1;
+                findcheese(maze, i, j-1, res);
+            }
+            else {
+                return false;
+            }
+        }
+    }
+    
+}
+
+int main()
+{
+    int maze[4][4] = {1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 1, 0, 1};
+    int res[4][4] = {0};
+    int i = 0;
+    int j = 0;
+    res[0][0] = 1;
+    if (findcheese(maze, i, j, res))
+        cout << "\nYES"<< endl;
+    else
+        cout << "NO" << endl;
+    
+    
+    return 0;
+}
