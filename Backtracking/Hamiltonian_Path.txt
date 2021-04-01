@@ -1,3 +1,5 @@
+// ques - https://practice.geeksforgeeks.org/problems/hamiltonian-path/0
+
 #include <iostream>
 #define N 10
 using namespace std;
