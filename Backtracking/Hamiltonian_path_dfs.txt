@@ -1,0 +1,56 @@
+#include <iostream>
+using namespace std;
+#define N 15
+
+bool dfs(int graph[N][N], int visited[], int u, int inSt_c, int n)
+{
+    if (inSt_c == n)
+        return true;
+    
+    for (int v = 0; v < n; v++) {
+        if (visited[v] == 0 && graph[u][v] == 1) {
+            visited[v] = 1;
+            if (dfs(graph, visited, v, inSt_c+1, n))
+                return true;
+            visited[v] = 0;
+        }
+    }
+
+    return false;
+}
+
+bool findHampath(int graph[N][N], int n)
+{
+    int visited[n] = {0};
+
+    for(int i = 0; i < n; i++) {
+        visited[i] = 1;
+        if (dfs(graph, visited, i, 1, n))
+            return true;
+        visited[i] = 0;
+    }
+
+    return false;
+}
+
+int main()
+{
+    int n, m;
+    cin >> n >> m;
+
+    int graph[N][N];
+    for (int i = 0; i < m; i++) {
+        int x, y;
+        cin >> x >> y;
+
+        graph[x][y] = 1;
+        graph[y][x] = 1;
+    }
+
+    if (findHampath(graph, n))
+        cout << "YES" << endl;
+    else
+        cout << "NO" << endl;
+
+    return 0;
+}

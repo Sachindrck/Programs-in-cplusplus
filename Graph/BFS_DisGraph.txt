@@ -50,7 +50,7 @@ void BFS(vector<int> arr[], int s, bool visited[])
 }
 
 
-// No source given an the graph may be disconnected
+// No source given and the graph may be disconnected
 // Application in web crawling
 void BFSDis(vector<int> arr[])
 {
